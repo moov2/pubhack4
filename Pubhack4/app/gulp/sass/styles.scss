@@ -122,10 +122,10 @@ img {
 	}
 
 	img {
-		max-height: 560px;
+		max-height: 460px;
 
 		@media all and (max-width: 450px) {
-			max-height: 350px;
+			max-height: 300px;
 		}
 	}
 }
