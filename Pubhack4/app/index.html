@@ -19,18 +19,24 @@
                     <div class="date-view">
                         <p>What year do you want to blast?</p>
 
-                        <div>
-                            <form method="post" class="year-picker js-upload-photo-form">
-                                <input type="file" name="photo" id="photo" />
-                                <button type="submit" class="js-button-submit-photo"></button>
-                            </form>
+                        <div class="js-year-selection">
+                            <div>
+                                <form method="post" class="year-picker js-upload-photo-form">
+                                    <input type="file" name="photo" id="photo" />
+                                    <button type="submit" class="js-button-submit-photo"></button>
+                                </form>
+                            </div>
+
+                            <div>
+                                <div class="year-picker">
+                                    <input type="number" min="1900" max="2004" class="js-input-year" />
+                                    <button class="js-button-select-year"></button>
+                                </div>
+                            </div>
                         </div>
 
-                        <div>
-                            <div class="year-picker">
-                                <input type="number" min="1900" max="2004" class="js-input-year" />
-                                <button class="js-button-select-year"></button>
-                            </div>
+                        <div class="js-year-loading" style="display: none;">
+                            <p>Loading...</p>
                         </div>
                     </div>
 

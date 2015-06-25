@@ -52,7 +52,7 @@ var Interface = {
 		this.count = 0;
 
 		loadCount = 0;
-		
+
 		// Load images
 		Interface.appendImages();
 
@@ -85,6 +85,11 @@ var Interface = {
 		if($answer === 'yes') {
 			LocalStorage.store(this.data[selectedIndex]);
 		}
+	},
+
+	showLoading: function () {
+		$('.js-year-selection').css('display', 'none');
+		$('.js-year-loading').css('display', 'block');
 	}
 };
 
@@ -97,11 +102,14 @@ $('.next').click(function(){
 
 $('.js-button-select-year').click(function() {
 	$value = $('.js-input-year').val();
+	Interface.showLoading();
 	App.getJson($value);
 });
 
 $('.js-upload-photo-form').on('submit', function (e) {
 	e.preventDefault();
+
+	Interface.showLoading();
 
 	$.ajax({
 		url: '/api/face/upload',
