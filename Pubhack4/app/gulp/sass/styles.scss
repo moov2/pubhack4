@@ -159,8 +159,16 @@ img {
 	cursor: pointer;
 	display: inline-block;
 
+	margin-bottom: 2em;
+
 	height: 124px;
 	width: 124px;
+
+	@media all and (max-width: 450px) {
+		height: 62px;
+  		width: 62px;
+  		background-size: 34.5px;
+	}
 }
 
 .yes {
