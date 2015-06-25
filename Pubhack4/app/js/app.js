@@ -52,13 +52,24 @@ var Interface = {
 		this.positionX = 0;
 		this.count = 0;
 
-		$data.forEach(function(row) {
-			$imageLists.append('<li><div class="item"><img src="'+ row.imageUrl +'"/><div class="title">'+ row.title +'</div></div></li>');
-		});
+		loadCount = 0;
+		
+		// Load images
+		Interface.appendImages();
+
 
 	},
 	appendImages: function() {
-		console.log(this.datatoLoad);
+		row = this.datatoLoad[0];
+
+		if(row) {
+			$imageLists.append('<li><div class="item"><img src="'+ row.imageUrl +'"/><div class="title">'+ row.title +'</div></div></li>');
+			$('li:last-child img').on('load',function(){
+				Interface.appendImages();
+			});
+
+			this.datatoLoad.splice(0, 1);
+		}
 	},
 	countList: function() {
 		return $('.cover ul li').size();
