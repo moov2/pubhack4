@@ -12,3 +12,35 @@ html {
 	background: linear-gradient(to bottom, rgba(225,32,54,1) 0%, rgba(230,104,72,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e12036', endColorstr='#e66848', GradientType=0 );
 }
+
+.cover {
+	ul {
+	
+		li {
+			position: relative;
+			display: none;
+		}
+
+		li.selected {
+			display: block;
+		}
+
+	}
+}
+
+img {
+	width: 200px;
+}
+
+.title {
+	
+}
+
+.next {
+	background: green;
+	text-align: center;
+	padding: 20px;
+	width: 100px;
+	margin: 20px;
+	cursor: pointer;
+}
