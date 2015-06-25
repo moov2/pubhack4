@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace Pubhack4.Services
 {
-    public interface ITitleService
+    public interface IItemService
     {
-        IList<Title> GetByYear(int year);
+        IList<Item> GetByYear(int year);
     }
 }

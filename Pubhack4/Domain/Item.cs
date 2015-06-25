@@ -1,6 +1,6 @@
 ﻿namespace Pubhack4.Domain
 {
-    public class Title
+    public class Item
     {
         public string Description { get; set; }
         public string ImageUrl { get; set; }
