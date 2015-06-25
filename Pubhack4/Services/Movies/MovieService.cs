@@ -19,7 +19,7 @@ namespace Pubhack4.Services.Movies
         public IList<Item> GetByYear(int year)
         {
             var apiResult = _client.DiscoverMovies(1, null, TMDbLib.Objects.Discover.DiscoverTvShowSortBy.Undefined, true, year);
-            return apiResult.Results.Select(x => ConvertMovie(x)).ToList(); 
+            return apiResult.Results.Select(x => ConvertMovie(x, year)).ToList(); 
         }
 
         /// <summary>
@@ -27,12 +27,13 @@ namespace Pubhack4.Services.Movies
         /// </summary>
         /// <param name="searchMovie"></param>
         /// <returns></returns>
-        public Item ConvertMovie(SearchMovie searchMovie)
+        public Item ConvertMovie(SearchMovie searchMovie, int year)
         {
             return new Item
             {
                 Title = searchMovie.Title,
                 Type = "Movie",
+                Year = year,
                 ImageUrl = string.Format("http://image.tmdb.org/t/p/w500{0}", searchMovie.PosterPath)
             };
         }

@@ -1,6 +1,7 @@
 ﻿using Nancy;
 using Pubhack4.Domain;
 using Pubhack4.Services.Movies;
+using Pubhack4.Services.VideoGames;
 using Pubhack4.Utilities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Pubhack4.Modules
 {
     public class FeedModule : NancyModule
     {
-        public FeedModule(IMovieService movieService)
+        public FeedModule(IMovieService movieService, IVideoGameService videoGameService)
         {
             Get["/api/feed/{year}"] = _ =>
             {
@@ -21,10 +22,10 @@ namespace Pubhack4.Modules
                     return HttpStatusCode.BadRequest;
 
                 // remove this line when the line below has been commented.
-                var items = movieService.GetByYear(year);
+                //var items = movieService.GetByYear(year);
 
                 // below will create a list combined of data from the different services.
-                //var items = new List<Item>().Concat(movieService.GetByYear(year)).Concat(anotherService.GetByYear(year)).ToList();
+                var items = new List<Item>().Concat(movieService.GetByYear(year)).Concat(videoGameService.GetByYear(year)).ToList();
 
                 return Response.AsJson<IList<Item>>(items.Shuffle<Item>());
             };

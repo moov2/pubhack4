@@ -22,7 +22,7 @@ namespace Pubhack4.Services.VideoGames
         {
             //string[] searchParameters = new string[1];
             //searchParameters[0] = "filter=original_release_date:1700-01-01|2100-12-31.";
-            var request = WebRequest.Create(string.Format("http://www.giantbomb.com/api/releases/?format=json&api_key={0}&filter=release_date:{1}-1-1%2000:00:00|{2}-1-1%2000:00:00",APIKey,year,year+1));
+            var request = WebRequest.Create(string.Format("http://www.giantbomb.com/api/releases/?format=json&api_key={0}&filter=release_date:{1}-1-1%2000:00:00|{2}-1-1%2000:00:00&limit={3}",APIKey,year,year+1,20));
             request.ContentType = "application/json; charset=utf-8";
             string text;
             var response = (HttpWebResponse)request.GetResponse();
@@ -44,6 +44,7 @@ namespace Pubhack4.Services.VideoGames
                 item.Title = game.Name;
                 item.Type = "Game";
                 item.Description = game.Description;
+                item.Year = year;
                 if(img != null)
                 {
                     item.ImageUrl = img.Super.Replace("\\", "");
