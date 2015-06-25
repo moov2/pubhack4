@@ -14,6 +14,11 @@ namespace Pubhack4
             get { return ConfigurationManager.AppSettings["VideoGameDbApiKey"]; }
         }
 
+        public static string BingApiKey
+        {
+            get { return ConfigurationManager.AppSettings["BingApiKey"]; }
+        }
+
         public static int PageSize
         {
             get { return Convert.ToInt32(ConfigurationManager.AppSettings["PageSize"]); }

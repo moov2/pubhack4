@@ -1,5 +1,6 @@
 ﻿using GiantBomb.Api;
 using Pubhack4.Domain;
+using Pubhack4.Services.Bing;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -46,6 +47,10 @@ namespace Pubhack4.Services.VideoGames
                 if(img != null)
                 {
                     item.ImageUrl = img.Super.Replace("\\", "");
+                } else
+                {
+                    BingService bs = new BingService();
+                    item.ImageUrl = bs.GetImagesForTerm(game.Name);
                 }
                 gameList.Add(item);
             }
