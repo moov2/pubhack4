@@ -140,7 +140,6 @@ $('.js-take-snapshot').on("click", function () {
 });
 
 var processSnapshot = function (data_uri) {
-    console.log(data_uri);
     $.ajax({
         url: '/api/face/base64',
         type: 'POST',
@@ -151,7 +150,7 @@ var processSnapshot = function (data_uri) {
             if (!data || data.length === 0) {
                 return;
             }
-            
+            Webcam.reset()
             var range = Math.round(Math.random() * (20 - 10) + 10),
                 age = data[0].age - range;
 
