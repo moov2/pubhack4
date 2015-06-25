@@ -222,3 +222,17 @@ img {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+#accordion {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 500px;
+	width: 100%;
+}
+
+#accordion h3 {
+	padding: .25em;
+	border-bottom: 1px solid #31c6cd;
+	color: #6ff7fd;
+	outline: none;
+}
