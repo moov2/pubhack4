@@ -1,6 +1,7 @@
 ﻿using Nancy;
 using Pubhack4.Domain;
 using Pubhack4.Services.Movies;
+using Pubhack4.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Pubhack4.Modules
                 // below will create a list combined of data from the different services.
                 //var items = new List<Item>().Concat(movieService.GetByYear(year)).Concat(anotherService.GetByYear(year)).ToList();
 
-                return Response.AsJson<IList<Item>>(items);
+                return Response.AsJson<IList<Item>>(items.Shuffle<Item>());
             };
         }
     }
