@@ -141,6 +141,8 @@ $('.js-take-snapshot').on("click", function () {
 });
 
 var processSnapshot = function (data_uri) {
+	Interface.showLoading();
+	
     $.ajax({
         url: '/api/face/base64',
         type: 'POST',
