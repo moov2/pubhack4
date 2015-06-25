@@ -151,7 +151,7 @@ var processSnapshot = function (data_uri) {
             if (!data || data.length === 0) {
                 return;
             }
-            
+
             var range = Math.round(Math.random() * (20 - 10) + 10),
                 age = data[0].age - range;
 
