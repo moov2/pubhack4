@@ -1,24 +1,18 @@
-var $myData;
 // App
-var App = (function () {
-
-	// Public variables	
-	var defaults = {
-		jsonURL: 'sample.json'
-	};
-
+var App = {
 
 	// Methods
-	var getJson = function() {
-		return $.getJSON(defaults.jsonURL);
-	};
-
-	return {
-		json : getJson()
-	};
-
-
-})();
+	getJson: function($date) {
+		if(!$date) {
+			$date = '2000';
+		}
+		
+		json = $.getJSON('http://moov2-pubhack4.azurewebsites.net/api/feed/' + $date).done(function($data) {
+			Interface.init($data);
+		});
+		return {json: json};
+	}
+};
 
 // Local Storage
 var LocalStorage = {
@@ -34,7 +28,6 @@ var LocalStorage = {
 			var key = localStorage.key(i);
 			var value = localStorage[key];
 			arr.push(JSON.parse(value));
-
 		}
 
 		return arr;
@@ -45,7 +38,10 @@ var LocalStorage = {
 // Interface
 var Interface = {
 	init: function($data) {
-		console.log($data);
+		$('.date-view').hide();
+		$('.cover-view').show();
+
+
 		this.data = $data;
 
 		$imageLists = $('.cover ul');
@@ -82,16 +78,10 @@ var Interface = {
 
 		// Store the set if they said YES
 		if($answer == 'yes') {
-			// console.log();
 			LocalStorage.store(this.data[$selectedIndex]);
 		}
 	}
 };
-
-App.json.done(function($data) {
-	Interface.init($data);
-
-});
 
 // Go to Next
 $('.next').click(function(){
@@ -99,4 +89,9 @@ $('.next').click(function(){
 	$this = $(this);
 	$answer = $this.attr('attr-data');
 	Interface.next($answer);
+});
+
+$('button').click(function() {
+	$value = $('input').val();
+	App.getJson($value);
 });
