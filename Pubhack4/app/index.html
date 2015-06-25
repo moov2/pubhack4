@@ -6,7 +6,7 @@
         <title>#Pubhack4 - Moov2</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400">
+        <!-- <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400"> -->
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
@@ -15,24 +15,29 @@
                 <img src="images/logo-ghetto-blaster.png" class="logo" />
 
                 <div class="js-content">
-<!--
-                    <p>What year do you want to blast?</p>
 
-                    <div class="year-picker">
-                        <input type="number" class="js-input-year" />
-                        <button class="js-button-select-year" />
-                    </div>-->
+                    <div class="date-view">
+                        <p>What year do you want to blast?</p>
 
-                    <p>Do you remember these?</p>
+                        <div class="year-picker">
+                            <input type="number" min="1900" max="2004" class="js-input-year" />
+                            <button class="js-button-select-year" />
+                        </div>
+                    </div>
 
-                    <section class="cover">
-                        <ul>
+                    <div class="cover-view">
+                        <p>Do you remember these?</p>
 
-                        </ul>
+                        <section class="cover">
+                            <ul>
 
-                        <div class="next yes" attr-data="no"></div>
-                        <div class="next no" attr-data="yes"></div>
-                    </section>
+                            </ul>
+
+                            <div class="next yes" attr-data="no"></div>
+                            <div class="next no" attr-data="yes"></div>
+                        </section>
+                    </div>
+
                 </div>
             </div>
         </div>
