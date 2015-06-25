@@ -22,9 +22,6 @@ namespace Pubhack4.Services.VideoGames
 
         [JsonProperty("image")]
         public Image Image { get; set; }
-
-        [JsonProperty("platforms")]
-        public IList<Platforms> Platforms { get; set; }
     }
 
     public class Image
@@ -49,11 +46,5 @@ namespace Pubhack4.Services.VideoGames
 
         [JsonProperty("super_url")]
         public string Super { get; set; }
-    }
-
-    public class Platforms
-    {
-        [JsonProperty("abbreviation")]
-        public string Abbreviation { get; set; }
     }
 }
