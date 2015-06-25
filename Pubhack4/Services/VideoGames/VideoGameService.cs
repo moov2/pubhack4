@@ -40,7 +40,12 @@ namespace Pubhack4.Services.VideoGames
                 Item item = new Item();
                 var img = game.Image;
 
-                item.Title = game.Name;
+                item.Title = game.Name + " (";
+                foreach(var p in game.Platforms)
+                {
+                    item.Title += p.Abbreviation + ", ";
+                }
+                item.Title = item.Title.TrimEnd(new char[] { ',', ' ' }) + ")";
                 item.Type = "Game";
                 item.Description = "";
                 item.Year = year;
