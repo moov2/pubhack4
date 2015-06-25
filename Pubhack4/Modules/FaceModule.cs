@@ -24,6 +24,22 @@ namespace Pubhack4.Modules
 
                 return Response.AsJson(faces);
             };
+
+            Post["/api/face/base64", true] = async (parameters, ct) =>
+            {
+
+                var data = System.Convert.FromBase64String(Context.Request.Form["image"]);
+
+                if (data == null)
+                    return HttpStatusCode.BadRequest;
+
+                var ms = new MemoryStream(data, 0, data.Length);
+
+                var faceService = new Pubhack4.Services.Face.FaceService();
+                var faces = await faceService.GetFacesFromImage(ms);
+
+                return Response.AsJson(faces);
+            };
         }
     }
 }
