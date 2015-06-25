@@ -18,29 +18,33 @@
                 <div class="js-content">
 
                     <div class="date-view">
-                        <p>What year do you want to blast?</p>
+                        <p>What do you want to blast?</p>
+                        <div id="accordion">
+                            <h3>Blast your face!</h3>
+                            <div>
+                                <div class="year-picker js-webcam" style="width:320px; height:240px;">
 
-                        <div>
-                            <div class="year-picker js-webcam" style="width:320px; height:240px;">
-                                
+                                </div><br />
+                                <button id="activate-cam" onclick="webcam_activate()">Webcam, activate!</button>
+                                    <button hidden class="js-take-snapshot">Use me!</button>
                             </div>
-                            <p><button onclick="javascript:void(take_snapshot())">Use me!</button></p>
-                        </div>
-                        <div>
-                            <form method="post" class="year-picker js-upload-photo-form">
-                                <input type="file" name="photo" id="photo" />
-                                <button type="submit" class="js-button-submit-photo"></button>
-                            </form>
-                        </div>
+                            <h3>Blast your images!</h3>
+                            <div>
+                                <form method="post" class="year-picker js-upload-photo-form">
+                                    <input type="file" name="photo" id="photo" />
+                                    <button type="submit" class="js-button-submit-photo"></button>
+                                </form>
+                            </div>
 
-                        <div>
-                            <div class="year-picker">
-                                <input type="number" min="1900" max="2004" class="js-input-year" />
-                                <button class="js-button-select-year"></button>
+                            <h3>Blast a year!</h3>
+                            <div>
+                                <div class="year-picker">
+                                    <input type="number" min="1900" max="2004" class="js-input-year" />
+                                    <button class="js-button-select-year"></button>
+                                </div>
+                            </div>
                             </div>
                         </div>
-                    </div>
-
                     <div class="cover-view">
                         <p>Do you remember these from <span class="js-current-year"></span>?</p>
 
@@ -59,6 +63,7 @@
         </div>
 
         <script src="js/jquery-2.1.4.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="js/app.js"></script>
     </body>
 </html>
