@@ -90,6 +90,7 @@
     <Content Include="app\index.html" />
     <Content Include="app\js\app.js" />
     <Content Include="app\js\jquery-2.1.4.min.js" />
+    <Content Include="app\js\webcam.js" />
     <Content Include="packages.config" />
     <Content Include="app\Web.config" />
     <None Include="Web.Debug.config">

@@ -110,3 +110,13 @@ $('.js-upload-photo-form').on('submit', function (e) {
 		}
 	});
 });
+
+function take_snapshot() {
+    Webcam.snap(function (data_uri) {
+        console.log(data_uri);
+    });
+}
+
+$(document).ready(function () {
+    Webcam.attach('.js-webcam');
+});
