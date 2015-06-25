@@ -126,10 +126,22 @@ img {
 	background-image: url('../images/check19.png');
 	border: 5px solid #6bc28c;
 	margin-right: 45px;
+
+	&:active,
+	&:hover,
+	&:focus {
+		background-color: #55ab76;
+	}
 }
 
 .no {
 	background-color: #a64d53;
 	background-image: url('../images/cross93.png');
 	border: 5px solid #c26e74;
+
+	&:active,
+	&:hover,
+	&:focus {
+		background-color: #b0555b;
+	}
 }
