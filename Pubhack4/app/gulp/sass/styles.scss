@@ -206,3 +206,19 @@ img {
 .cover-view {
 	display: none;
 }
+
+.ui-accordion-content {
+	padding-bottom: .5em;
+}
+
+.ui-accordion-header {
+	cursor: pointer;
+	margin-bottom: 1em;
+}
+
+.webcam {
+	background-image: url('../images/avatar.png');
+	margin-bottom: 2em;
+	margin-left: auto;
+	margin-right: auto;
+}

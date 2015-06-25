@@ -3,7 +3,6 @@ var App = {
 
 	// Methods
 	getJson: function($date) {
-		console.log($date);
 		if(!$date) {
 			$date = '2000';
 		}
@@ -11,6 +10,8 @@ var App = {
 		json = $.getJSON('http://moov2-pubhack4.azurewebsites.net/api/feed/' + $date).done(function($data) {
 			$('.js-current-year').html($date);
 			Interface.init($data);
+		}).fail(function () {
+			alert('failed :(');
 		});
 		return {json: json};
 	}
@@ -146,10 +147,10 @@ var processSnapshot = function (data_uri) {
         data: { image: data_uri },
         cache: false,
         success: function (data) {
-            console.log("Success!");
             if (!data || data.length === 0) {
                 return;
             }
+
             Webcam.reset()
             var range = Math.round(Math.random() * (20 - 10) + 10),
                 age = data[0].age - range;
@@ -157,7 +158,6 @@ var processSnapshot = function (data_uri) {
             App.getJson(new Date().getFullYear() - age);
         },
         error: function (data) {
-            console.log(data);
         }
     });
 }
