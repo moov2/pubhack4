@@ -94,12 +94,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Domain\Face.cs" />
     <Compile Include="Domain\Item.cs" />
+    <Compile Include="Modules\FaceModule.cs" />
     <Compile Include="Modules\FeedModule.cs" />
     <Compile Include="Modules\HomeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Bing\BingSearchContainer.cs" />
     <Compile Include="Services\Bing\BingService.cs" />
+    <Compile Include="Services\Face\FaceService.cs" />
     <Compile Include="Services\IItemService.cs" />
     <Compile Include="Services\Movies\MovieService.cs" />
     <Compile Include="Services\VideoGames\VideoGameAPIResponse.cs" />
@@ -108,6 +111,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\Music\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClientLibrary\ClientLibrary.csproj">
+      <Project>{25d58ba5-660f-407b-803c-22b4547c09dc}</Project>
+      <Name>ClientLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
