@@ -3,15 +3,14 @@ var App = {
 
 	// Methods
 	getJson: function($date) {
-		console.log('clicked');
-
+		console.log($date);
 		if(!$date) {
 			$date = '2000';
 		}
 
 		json = $.getJSON('http://moov2-pubhack4.azurewebsites.net/api/feed/' + $date).done(function($data) {
+			$('.js-current-year').html($date);
 			Interface.init($data);
-			console.log('Data loaded');
 		});
 		return {json: json};
 	}
@@ -96,7 +95,30 @@ $('.next').click(function(){
 	Interface.next($answer);
 });
 
-$('button').click(function() {
-	$value = $('input').val();
+$('.js-button-select-year').click(function() {
+	$value = $('.js-input-year').val();
 	App.getJson($value);
+});
+
+$('.js-upload-photo-form').on('submit', function (e) {
+	e.preventDefault();
+
+	$.ajax({
+		url: '/api/face/upload',
+		type: 'POST',
+		data: new FormData(this),
+		contentType: false,
+		cache: false,
+		processData:false,
+		success: function(data) {
+			if (!data && data.length === 0) {
+				return;
+			}
+
+    		var range =  Math.round(Math.random() * (20 - 10) + 10),
+				age = data[0].age - range;
+
+			App.getJson(new Date().getFullYear() - age);
+		}
+	});
 });

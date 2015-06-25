@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pubhack4", "Pubhack4\Pubhack4.csproj", "{B55D2832-6D79-4481-9640-4B61CE5C077C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientLibrary", "ClientLibrary\ClientLibrary.csproj", "{25D58BA5-660F-407B-803C-22B4547C09DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B55D2832-6D79-4481-9640-4B61CE5C077C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B55D2832-6D79-4481-9640-4B61CE5C077C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B55D2832-6D79-4481-9640-4B61CE5C077C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25D58BA5-660F-407B-803C-22B4547C09DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25D58BA5-660F-407B-803C-22B4547C09DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25D58BA5-660F-407B-803C-22B4547C09DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25D58BA5-660F-407B-803C-22B4547C09DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

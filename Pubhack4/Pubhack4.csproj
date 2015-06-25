@@ -81,7 +81,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\css\styles.css" />
+    <Content Include="app\images\bg-grunge.jpg" />
+    <Content Include="app\images\check19.png" />
+    <Content Include="app\images\cross93.png" />
+    <Content Include="app\images\icon-arrow-right.png" />
+    <Content Include="app\images\logo-ghetto-blaster.png" />
+    <Content Include="app\index.html" />
+    <Content Include="app\js\app.js" />
+    <Content Include="app\js\jquery-2.1.4.min.js" />
     <Content Include="packages.config" />
+    <Content Include="app\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -94,11 +104,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Domain\Face.cs" />
     <Compile Include="Domain\Item.cs" />
+    <Compile Include="Modules\FaceModule.cs" />
     <Compile Include="Modules\FeedModule.cs" />
+    <Compile Include="Modules\HomeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Bing\BingSearchContainer.cs" />
     <Compile Include="Services\Bing\BingService.cs" />
+    <Compile Include="Services\Face\FaceService.cs" />
     <Compile Include="Services\IItemService.cs" />
     <Compile Include="Services\Movies\MovieService.cs" />
     <Compile Include="Services\VideoGames\VideoGameAPIResponse.cs" />
@@ -107,6 +121,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\Music\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClientLibrary\ClientLibrary.csproj">
+      <Project>{25d58ba5-660f-407b-803c-22b4547c09dc}</Project>
+      <Name>ClientLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -119,7 +139,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50006</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

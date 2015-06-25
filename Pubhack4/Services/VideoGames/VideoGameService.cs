@@ -21,7 +21,7 @@ namespace Pubhack4.Services.VideoGames
         public IList<Item> GetByYear(int year, int page)
         {
             int offset = (page * Config.PageSize) - Config.PageSize;
-            var request = WebRequest.Create(string.Format("http://www.giantbomb.com/api/releases/?format=json&api_key={0}&filter=release_date:{1}-1-1%2000:00:00|{2}-1-1%2000:00:00&limit={3}&offset={4}", Config.VideoGameDbApiKey, year, year + 1, Config.PageSize, offset));
+            var request = WebRequest.Create(string.Format("http://www.giantbomb.com/api/games/?format=json&api_key={0}&filter=original_release_date:{1}-1-1%2000:00:00|{2}-1-1%2000:00:00&limit={3}&offset={4}&sort=number_of_user_reviews:desc", Config.VideoGameDbApiKey, year, year + 1, Config.PageSize, offset));
             request.ContentType = "application/json; charset=utf-8";
             string text;
             var response = (HttpWebResponse)request.GetResponse();
@@ -42,7 +42,6 @@ namespace Pubhack4.Services.VideoGames
 
                 item.Title = game.Name;
                 item.Type = "Game";
-                item.Description = game.Description;
                 item.Year = year;
                 if(img != null)
                 {
@@ -52,7 +51,14 @@ namespace Pubhack4.Services.VideoGames
                     BingService bs = new BingService();
                     item.ImageUrl = bs.GetImagesForTerm(game.Name);
                 }
-                gameList.Add(item);
+                bool exists = false;
+                foreach (Item i in gameList)
+                {
+                    if (i.Title == item.Title)
+                        exists = true;
+                }
+                if(!exists)
+                    gameList.Add(item);
             }
 
             return gameList;
