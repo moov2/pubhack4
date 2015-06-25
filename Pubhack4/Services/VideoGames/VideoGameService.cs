@@ -52,7 +52,14 @@ namespace Pubhack4.Services.VideoGames
                     BingService bs = new BingService();
                     item.ImageUrl = bs.GetImagesForTerm(game.Name);
                 }
-                gameList.Add(item);
+                bool exists = false;
+                foreach (Item i in gameList)
+                {
+                    if (i.Title == item.Title)
+                        exists = true;
+                }
+                if(!exists)
+                    gameList.Add(item);
             }
 
             return gameList;
