@@ -148,4 +148,10 @@ function webcam_activate() {
         jpeg_quality: 90
     });
     Webcam.attach('.js-webcam');
+    $('#activate-cam').hide();
+    $('.js-take-snapshot').show();
 }
+
+$(document).ready(function () {
+    $("#accordion").accordion();
+});
