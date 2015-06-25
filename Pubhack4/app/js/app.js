@@ -3,6 +3,7 @@ var App = {
 
 	// Methods
 	getJson: function($date) {
+		console.log($date);
 		if(!$date) {
 			$date = '2000';
 		}
@@ -84,7 +85,7 @@ $('.next').click(function(){
 });
 
 $('.js-button-select-year').click(function() {
-	$value = $('input').val();
+	$value = $('.js-input-year').val();
 	App.getJson($value);
 });
 
