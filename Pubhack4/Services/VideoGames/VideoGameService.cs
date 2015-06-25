@@ -11,18 +11,16 @@ namespace Pubhack4.Services.VideoGames
     
     public class VideoGameService : IVideoGameService
     {
-        private const string APIKey = "989d92a49e6e382df62654cbd0a17484cc578e03";
 
         public VideoGameService()
         {
             
         }
 
-        public IList<Item> GetByYear(int year)
+        public IList<Item> GetByYear(int year, int page)
         {
-            //string[] searchParameters = new string[1];
-            //searchParameters[0] = "filter=original_release_date:1700-01-01|2100-12-31.";
-            var request = WebRequest.Create(string.Format("http://www.giantbomb.com/api/releases/?format=json&api_key={0}&filter=release_date:{1}-1-1%2000:00:00|{2}-1-1%2000:00:00&limit={3}",APIKey,year,year+1,20));
+            int offset = (page * Config.PageSize) - Config.PageSize;
+            var request = WebRequest.Create(string.Format("http://www.giantbomb.com/api/releases/?format=json&api_key={0}&filter=release_date:{1}-1-1%2000:00:00|{2}-1-1%2000:00:00&limit={3}&offset={4}", Config.VideoGameDbApiKey, year, year + 1, Config.PageSize, offset));
             request.ContentType = "application/json; charset=utf-8";
             string text;
             var response = (HttpWebResponse)request.GetResponse();

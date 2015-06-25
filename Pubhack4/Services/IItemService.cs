@@ -5,6 +5,6 @@ namespace Pubhack4.Services
 {
     public interface IItemService
     {
-        IList<Item> GetByYear(int year);
+        IList<Item> GetByYear(int year, int page);
     }
 }

@@ -16,9 +16,9 @@ namespace Pubhack4.Services.Movies
             _client = new TMDbClient(Config.MovieDbApiKey);
         }
 
-        public IList<Item> GetByYear(int year)
+        public IList<Item> GetByYear(int year, int page)
         {
-            var apiResult = _client.DiscoverMovies(1, null, TMDbLib.Objects.Discover.DiscoverTvShowSortBy.Undefined, true, year);
+            var apiResult = _client.DiscoverMovies(page, null, TMDbLib.Objects.Discover.DiscoverTvShowSortBy.Undefined, true, year);
             return apiResult.Results.Select(x => ConvertMovie(x, year)).ToList(); 
         }
 
