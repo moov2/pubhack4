@@ -2,7 +2,7 @@ var App = (function () {
 
 	// Public variables	
 	var defaults = {
-		jsonURL: 'http://local.pubhack4.com/sample.json'
+		jsonURL: 'sample.json'
 	};
 
 
