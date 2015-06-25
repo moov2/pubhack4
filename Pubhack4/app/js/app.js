@@ -11,6 +11,8 @@ var App = {
 		json = $.getJSON('http://moov2-pubhack4.azurewebsites.net/api/feed/' + $date).done(function($data) {
 			$('.js-current-year').html($date);
 			Interface.init($data);
+		}).fail(function () {
+			alert('failed :(');
 		});
 		return {json: json};
 	}
