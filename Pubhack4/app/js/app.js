@@ -3,12 +3,15 @@ var App = {
 
 	// Methods
 	getJson: function($date) {
+		console.log('clicked');
+
 		if(!$date) {
 			$date = '2000';
 		}
-		
+
 		json = $.getJSON('http://moov2-pubhack4.azurewebsites.net/api/feed/' + $date).done(function($data) {
 			Interface.init($data);
+			console.log('Data loaded');
 		});
 		return {json: json};
 	}
@@ -43,12 +46,13 @@ var Interface = {
 
 
 		this.data = $data;
+		this.datatoLoad = $data;
 
 		$imageLists = $('.cover ul');
 
 		var $count = 0;
 		var $class;
-		$data.forEach(function(row) {
+		this.data.forEach(function(row) {
 
 			if($count === 0) {
 				$class = 'selected';
@@ -56,11 +60,20 @@ var Interface = {
 				$class = '';
 			}
 
-			$imageLists.append('<li class="'+ $class +'"><img src="'+ row.imageUrl +'"/><div class="title">'+ row.title +'</div></li>');
+			$loadCount = 0;
+			if($loadCount < 1) {
+				$imageLists.append('<li class="'+ $class +'"><img src="'+ row.imageUrl +'"/><div class="title">'+ row.title +'</div></li>');
 
+				$('li.selected img').on('load',function(){
+					Interface.appendImages();
+				});
+			}
 			$count++;
 		});
 
+	},
+	appendImages: function() {
+		console.log(this.datatoLoad);
 	},
 	countList: function() {
 		return $('.cover ul li').size();
