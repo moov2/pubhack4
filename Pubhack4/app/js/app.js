@@ -3,7 +3,6 @@ var App = {
 
 	// Methods
 	getJson: function($date) {
-		console.log($date);
 		if(!$date) {
 			$date = '2000';
 		}
@@ -142,25 +141,23 @@ $('.js-take-snapshot').on("click", function () {
 });
 
 var processSnapshot = function (data_uri) {
-    console.log(data_uri);
     $.ajax({
         url: '/api/face/base64',
         type: 'POST',
         data: { image: data_uri },
         cache: false,
         success: function (data) {
-            console.log("Success!");
             if (!data || data.length === 0) {
                 return;
             }
 
+            Webcam.reset()
             var range = Math.round(Math.random() * (20 - 10) + 10),
                 age = data[0].age - range;
 
             App.getJson(new Date().getFullYear() - age);
         },
         error: function (data) {
-            console.log(data);
         }
     });
 }

@@ -11,7 +11,7 @@ namespace Pubhack4.Services.Bing
     public class BingService
     {
 
-        private static bool debug = true;
+        private static bool debug = false;
 
         public BingService()
         {
