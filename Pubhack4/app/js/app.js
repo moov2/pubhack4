@@ -44,31 +44,16 @@ var Interface = {
 		$('.date-view').hide();
 		$('.cover-view').show();
 
-
 		this.data = $data;
 		this.datatoLoad = $data;
 
 		$imageLists = $('.cover ul');
 
-		var $count = 0;
-		var $class;
-		this.data.forEach(function(row) {
+		this.positionX = 0;
+		this.count = 0;
 
-			if($count === 0) {
-				$class = 'selected';
-			} else {
-				$class = '';
-			}
-
-			$loadCount = 0;
-			if($loadCount < 1) {
-				$imageLists.append('<li class="'+ $class +'"><img src="'+ row.imageUrl +'"/><div class="title">'+ row.title +'</div></li>');
-
-				$('li.selected img').on('load',function(){
-					Interface.appendImages();
-				});
-			}
-			$count++;
+		$data.forEach(function(row) {
+			$imageLists.append('<li><div class="item"><img src="'+ row.imageUrl +'"/><div class="title">'+ row.title +'</div></div></li>');
 		});
 
 	},
@@ -79,26 +64,22 @@ var Interface = {
 		return $('.cover ul li').size();
 	},
 	next: function($answer) {
-		$selectedImage = $('.cover ul li.selected');
+		var $selectedImage = $($('.cover ul li')[this.count]),
+			selectedIndex = $selectedImage.index();
 
-		$selectedIndex = $selectedImage.index();
+		this.positionX += $selectedImage.outerWidth(true);
 
-		// Go to next set
-		if($selectedIndex < Interface.countList() - 1) {
-			$selectedImage.removeClass('selected');
-			$('.cover ul li').eq($selectedIndex + 1).addClass('selected');
-		}
+		$('.cover ul').css('transform', 'translateX(-' + this.positionX + 'px)');
 
 		// Store the set if they said YES
-		if($answer == 'yes') {
-			LocalStorage.store(this.data[$selectedIndex]);
+		if($answer === 'yes') {
+			LocalStorage.store(this.data[selectedIndex]);
 		}
 	}
 };
 
 // Go to Next
 $('.next').click(function(){
-
 	$this = $(this);
 	$answer = $this.attr('attr-data');
 	Interface.next($answer);
