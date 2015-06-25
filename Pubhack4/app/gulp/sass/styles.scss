@@ -14,6 +14,10 @@ body {
 	padding: 1.5em;
 
 	height: 100%;
+
+	@media all and (max-width: 450px) {
+		padding: 1em .75em;
+	}
 }
 
 .main {
@@ -37,6 +41,10 @@ h3 {
 
 p {
 	margin-bottom: 2em;
+}
+
+input[type=file] {
+	width: 220px;
 }
 
 img {
@@ -87,12 +95,21 @@ img {
 	max-width: 448px;
 	margin: 0 auto;
 
+	@media all and (max-width: 450px) {
+		max-width: 300px;
+	}
+
+	@media all and (max-width: 320px) {
+		max-width: 275px;
+	}
+
 	ul {
 		transition: transform .3s;
 		white-space: nowrap;
 
 
 		li {
+			box-sizing: border-box;
 			position: relative;
 			display: inline-block;
 			margin-bottom: 2em;
@@ -102,11 +119,20 @@ img {
 			text-align: center;
 
 			width: 400px;
+
+			@media all and (max-width: 450px) {
+				margin-left: 0;
+				width: 100%;
+			}
 		}
 	}
 
 	img {
-		max-height: 560px;
+		max-height: 460px;
+
+		@media all and (max-width: 450px) {
+			max-height: 300px;
+		}
 	}
 }
 
@@ -139,8 +165,16 @@ img {
 	cursor: pointer;
 	display: inline-block;
 
+	margin-bottom: 2em;
+
 	height: 124px;
 	width: 124px;
+
+	@media all and (max-width: 450px) {
+		height: 62px;
+  		width: 62px;
+  		background-size: 34.5px;
+	}
 }
 
 .yes {

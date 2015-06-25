@@ -3,6 +3,7 @@ var App = {
 
 	// Methods
 	getJson: function($date) {
+		console.log($date);
 		if(!$date) {
 			$date = '2000';
 		}
@@ -50,13 +51,24 @@ var Interface = {
 		this.positionX = 0;
 		this.count = 0;
 
-		$data.forEach(function(row) {
-			$imageLists.append('<li><div class="item"><img src="'+ row.imageUrl +'"/><div class="title">'+ row.title +'</div></div></li>');
-		});
+		loadCount = 0;
+
+		// Load images
+		Interface.appendImages();
+
 
 	},
 	appendImages: function() {
-		console.log(this.datatoLoad);
+		row = this.datatoLoad[0];
+
+		if(row) {
+			$imageLists.append('<li><div class="item"><img src="'+ row.imageUrl +'"/><div class="title">'+ row.title +'</div></div></li>');
+			$('li:last-child img').on('load',function(){
+				Interface.appendImages();
+			});
+
+			this.datatoLoad.splice(0, 1);
+		}
 	},
 	countList: function() {
 		return $('.cover ul li').size();
@@ -73,6 +85,11 @@ var Interface = {
 		if($answer === 'yes') {
 			LocalStorage.store(this.data[selectedIndex]);
 		}
+	},
+
+	showLoading: function () {
+		$('.js-year-selection').css('display', 'none');
+		$('.js-year-loading').css('display', 'block');
 	}
 };
 
@@ -84,12 +101,19 @@ $('.next').click(function(){
 });
 
 $('.js-button-select-year').click(function() {
-	$value = $('input').val();
+	$value = $('.js-input-year').val();
+	Interface.showLoading();
 	App.getJson($value);
+});
+
+$('.js-input-file-photo').change(function () {
+	$('.js-upload-photo-form').submit();
 });
 
 $('.js-upload-photo-form').on('submit', function (e) {
 	e.preventDefault();
+
+	Interface.showLoading();
 
 	$.ajax({
 		url: '/api/face/upload',
