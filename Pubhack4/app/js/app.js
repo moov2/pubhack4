@@ -2,11 +2,10 @@
 // App
 var App = (function () {
 
-	// Public variables	
+	// Public variables
 	var defaults = {
-		jsonURL: 'sample.json'
+		jsonURL: 'http://moov2-pubhack4.azurewebsites.net/api/feed/2008'
 	};
-
 
 	// Methods
 	var getJson = function() {
@@ -16,8 +15,6 @@ var App = (function () {
 	return {
 		json : getJson()
 	};
-
-
 })();
 
 
