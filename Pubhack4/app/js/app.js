@@ -106,6 +106,10 @@ $('.js-button-select-year').click(function() {
 	App.getJson($value);
 });
 
+$('.js-input-file-photo').change(function () {
+	$('.js-upload-photo-form').submit();
+});
+
 $('.js-upload-photo-form').on('submit', function (e) {
 	e.preventDefault();
 
