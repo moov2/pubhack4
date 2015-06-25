@@ -1,4 +1,4 @@
-
+var $myData;
 // App
 var App = (function () {
 
@@ -17,11 +17,33 @@ var App = (function () {
 	};
 })();
 
+// Local Storage
+var LocalStorage = {
+	count: function() {
+		return localStorage.length;
+	},
+	store: function($object) {
+		localStorage.setItem(LocalStorage.count() + 1, JSON.stringify($object));
+	},
+	getAll: function() {
+		var arr = [];
+		for(var i=0, len=localStorage.length; i<len; i++) {
+			var key = localStorage.key(i);
+			var value = localStorage[key];
+			arr.push(JSON.parse(value));
+
+		}
+
+		return arr;
+	}
+};
+
 
 // Interface
 var Interface = {
 	init: function($data) {
 		console.log($data);
+		this.data = $data;
 
 		$imageLists = $('.cover ul');
 
@@ -41,27 +63,29 @@ var Interface = {
 		});
 
 	},
-	count: function() {
+	countList: function() {
 		return $('.cover ul li').size();
 	},
-	next: function() {
+	next: function($answer) {
 		$selectedImage = $('.cover ul li.selected');
 
 		$selectedIndex = $selectedImage.index();
 
-
-		console.log(Interface.count());
-		console.log($selectedIndex);
-
-		if($selectedIndex < Interface.count() - 1) {
+		// Go to next set
+		if($selectedIndex < Interface.countList() - 1) {
 			$selectedImage.removeClass('selected');
 			$('.cover ul li').eq($selectedIndex + 1).addClass('selected');
+		}
+
+		// Store the set if they said YES
+		if($answer == 'yes') {
+			// console.log();
+			LocalStorage.store(this.data[$selectedIndex]);
 		}
 	}
 };
 
 App.json.done(function($data) {
-
 	Interface.init($data);
 
 });
@@ -69,5 +93,7 @@ App.json.done(function($data) {
 // Go to Next
 $('.next').click(function(){
 
-	Interface.next();
+	$this = $(this);
+	$answer = $this.attr('attr-data');
+	Interface.next($answer);
 });
