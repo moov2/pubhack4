@@ -47,7 +47,6 @@ namespace Pubhack4.Services.VideoGames
                 }
                 item.Title = item.Title.TrimEnd(new char[] { ',', ' ' }) + ")";
                 item.Type = "Game";
-                item.Description = "";
                 item.Year = year;
                 if(img != null)
                 {
