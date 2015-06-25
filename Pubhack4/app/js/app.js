@@ -99,7 +99,7 @@ $('.js-upload-photo-form').on('submit', function (e) {
 		cache: false,
 		processData:false,
 		success: function(data) {
-			if (!data && data.length === 0) {
+			if (!data || data.length === 0) {
 				return;
 			}
 
@@ -111,12 +111,41 @@ $('.js-upload-photo-form').on('submit', function (e) {
 	});
 });
 
-function take_snapshot() {
-    Webcam.snap(function (data_uri) {
-        console.log(data_uri);
+$('.js-take-snapshot').on("click", function () {
+    Webcam.snap(function (data_uri) { processSnapshot(data_uri); });
+});
+
+var processSnapshot = function (data_uri) {
+    console.log(data_uri);
+    $.ajax({
+        url: '/api/face/base64',
+        type: 'POST',
+        data: { image: data_uri },
+        cache: false,
+        success: function (data) {
+            console.log("Success!");
+            if (!data || data.length === 0) {
+                return;
+            }
+            
+            var range = Math.round(Math.random() * (20 - 10) + 10),
+                age = data[0].age - range;
+
+            App.getJson(new Date().getFullYear() - age);
+        },
+        error: function (data) {
+            console.log(data);
+        }
     });
 }
-
-$(document).ready(function () {
+function webcam_activate() {
+    Webcam.set({
+        width: 320,
+        height: 240,
+        dest_width: 320,
+        dest_height: 240,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
     Webcam.attach('.js-webcam');
-});
+}

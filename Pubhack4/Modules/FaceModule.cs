@@ -27,8 +27,9 @@ namespace Pubhack4.Modules
 
             Post["/api/face/base64", true] = async (parameters, ct) =>
             {
+                string x = Context.Request.Form["image"];
 
-                var data = System.Convert.FromBase64String(Context.Request.Form["image"]);
+                var data = System.Convert.FromBase64String(x.Split(',')[1]);
 
                 if (data == null)
                     return HttpStatusCode.BadRequest;
