@@ -7,7 +7,7 @@ gulp.task('sass', function() {
         .pipe(sass({
 			outputStyle: 'compressed'
         }))
-        .pipe(gulp.dest('../../css'));
+        .pipe(gulp.dest('../css'));
 });
 
 gulp.task('autoprefixer', function() {
